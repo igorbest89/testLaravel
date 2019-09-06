@@ -1,0 +1,18 @@
+version: '2'
+services:
+  php-apache-dev:
+    image: webdevops/php-apache-dev
+    ports:
+      - '81:80'
+    volumes:
+      - '.:/app'
+    links:
+      - 'mariadb:db'
+  mariadb:
+    image: 'mariadb:latest'
+    volumes:
+      - './mysql:/var/lib/mysql'
+    ports:
+      - '3360:3306'
+    environment:
+      - MYSQL_ROOT_PASSWORD=demo1234
